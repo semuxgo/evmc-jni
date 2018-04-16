@@ -1,0 +1,6 @@
+[submodule "evmc"]
+	path = evmc
+	url = https://github.com/ethereum/evmc
+[submodule "evmjit"]
+	path = evmjit
+	url = https://github.com/ethereum/evmjit

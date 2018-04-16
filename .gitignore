@@ -1,0 +1,30 @@
+# binary files and logs
+*.class
+*.log
+*.data
+
+# release binaries
+*.zip
+*.tar.gz
+
+# cmake build dir
+build/
+
+# maven generated files
+target/
+dist/
+
+# eclipse generated files
+.project
+.classpath
+.settings/
+
+# IDEA generated files
+.idea
+*.iml
+
+# OSX generated files
+.DS_Store
+
+# JVM crash dumps
+hs_err_pid*

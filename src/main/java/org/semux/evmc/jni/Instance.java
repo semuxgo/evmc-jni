@@ -7,4 +7,10 @@
 package org.semux.evmc.jni;
 
 public class Instance {
+
+    private long pointer;
+
+    public Instance(long pointer) {
+        this.pointer = pointer;
+    }
 }

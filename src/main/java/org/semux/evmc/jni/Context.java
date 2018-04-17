@@ -22,7 +22,7 @@ public interface Context {
      *            The address of the account the query is about.
      * @return 1 if exists, 0 otherwise.
      */
-    int accountExists(VM vm, Address address);
+    int accountExists(Evm vm, Address address);
 
     /**
      * Get storage callback function.
@@ -38,7 +38,7 @@ public interface Context {
      *            The index of the storage entry.
      * @return The storage value.
      */
-    DataWord getStorage(VM vm, Address address, DataWord key);
+    DataWord getStorage(Evm vm, Address address, DataWord key);
 
     /**
      * Set storage callback function.
@@ -55,7 +55,7 @@ public interface Context {
      * @param value
      *            The value to be stored.
      */
-    void setStorage(VM vm, Address address, DataWord key, DataWord value);
+    void setStorage(Evm vm, Address address, DataWord key, DataWord value);
 
     /**
      * Get balance callback function.
@@ -69,7 +69,7 @@ public interface Context {
      *            The address.
      * @return The balance value.
      */
-    DataWord getBalance(VM vm, Address address);
+    DataWord getBalance(Evm vm, Address address);
 
     /**
      * Get code size callback function.
@@ -82,7 +82,7 @@ public interface Context {
      * @param address
      * @return
      */
-    int getCodeSize(VM vm, Address address);
+    int getCodeSize(Evm vm, Address address);
 
     /**
      * Copy code callback function.
@@ -104,7 +104,7 @@ public interface Context {
      *            copy of the requested code.
      * @return The number of bytes copied to the buffer by the Client.
      */
-    int copyCode(VM vm, Address address, int codeOffset, byte[] buffer);
+    int copyCode(Evm vm, Address address, int codeOffset, byte[] buffer);
 
     /**
      * Selfdestruct callback function.
@@ -120,7 +120,7 @@ public interface Context {
      * @param beneficiary
      *            The address where the remaining ETH is going to be transferred.
      */
-    void selfdestruct(VM vm, Address address, Address beneficiary);
+    void selfdestruct(Evm vm, Address address, Address beneficiary);
 
     /**
      * Log callback function.
@@ -140,7 +140,7 @@ public interface Context {
      *            The number of the topics. Valid values are between 0 and 4
      *            inclusively.
      */
-    void emitLog(VM vm, Address address, byte[] data, DataWord topics[], int topics_count);
+    void emitLog(Evm vm, Address address, byte[] data, DataWord topics[], int topics_count);
 
     /**
      * Pointer to the callback function supporting EVM calls.
@@ -151,5 +151,5 @@ public interface Context {
      *            Call parameters. {@link Message}
      * @return The result of the call.
      */
-    Result call(VM vm, Message msg);
+    Result call(Evm vm, Message msg);
 }

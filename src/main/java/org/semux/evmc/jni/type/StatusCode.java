@@ -21,7 +21,7 @@ public enum StatusCode {
     OUT_OF_GAS(2),
 
     /**
-     * Unknown instruction encountered by the VM.
+     * Unknown instruction encountered by the Evm.
      */
     UNDEFINED_INSTRUCTION(3),
 

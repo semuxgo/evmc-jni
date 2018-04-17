@@ -9,7 +9,7 @@ package org.semux.evmc.jni;
 public class EvmFactory {
 
     /**
-     * Creates an EVMJIT instance
+     * Creates an EVMJIT instance.
      *
      * @return
      */
@@ -18,12 +18,11 @@ public class EvmFactory {
     }
 
     /**
-     * Destroys an EVMJIT instance
+     * Creates an Example EVM instance.
      *
-     * @param evm
-     *         The EVM instance
      * @return
      */
-    public static void destroyEvmjit(Evm evm) {
+    public static Evm createExampleEvm() {
+        return null;
     }
 }

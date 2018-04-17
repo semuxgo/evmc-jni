@@ -6,6 +6,10 @@
  */
 package org.semux.evmc.jni;
 
+import org.semux.evmc.jni.type.Message;
+import org.semux.evmc.jni.type.Result;
+import org.semux.evmc.jni.type.Revision;
+
 public class Evm {
 
     private long pointer;
@@ -21,6 +25,19 @@ public class Evm {
         this.abiVersion = abiVersion;
         this.name = name;
         this.version = version;
+    }
+
+    public void setOption(String name, String value) {
+
+    }
+
+    public Result execute(Context context, Revision revision, Message msg, byte[] code) {
+
+        return null;
+    }
+
+    public void destroy() {
+
     }
 
     public long getPointer() {

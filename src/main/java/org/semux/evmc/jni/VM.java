@@ -6,11 +6,11 @@
  */
 package org.semux.evmc.jni;
 
-public class Instance {
+public class VM {
 
     private long pointer;
 
-    public Instance(long pointer) {
+    public VM(long pointer) {
         this.pointer = pointer;
     }
 }

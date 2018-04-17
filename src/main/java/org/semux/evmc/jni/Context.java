@@ -16,13 +16,13 @@ public interface Context {
     /**
      * Check account existence callback function
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address of the account the query is about.
      * @return 1 if exists, 0 otherwise.
      */
-    int accountExists(Instance instance, Address address);
+    int accountExists(VM vm, Address address);
 
     /**
      * Get storage callback function.
@@ -30,15 +30,15 @@ public interface Context {
      * This callback function is used by an EVM to query the given contract storage
      * entry.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address of the contract.
      * @param key
      *            The index of the storage entry.
      * @return The storage value.
      */
-    DataWord getStorage(Instance instance, Address address, DataWord key);
+    DataWord getStorage(VM vm, Address address, DataWord key);
 
     /**
      * Set storage callback function.
@@ -46,8 +46,8 @@ public interface Context {
      * This callback function is used by an EVM to update the given contract storage
      * entry.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address of the contract.
      * @param key
@@ -55,7 +55,7 @@ public interface Context {
      * @param value
      *            The value to be stored.
      */
-    void setStorage(Instance instance, Address address, DataWord key, DataWord value);
+    void setStorage(VM vm, Address address, DataWord key, DataWord value);
 
     /**
      * Get balance callback function.
@@ -63,13 +63,13 @@ public interface Context {
      * This callback function is used by an EVM to query the balance of the given
      * address.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address.
      * @return The balance value.
      */
-    DataWord getBalance(Instance instance, Address address);
+    DataWord getBalance(VM vm, Address address);
 
     /**
      * Get code size callback function.
@@ -78,11 +78,11 @@ public interface Context {
      * in the account at the given address. For accounts not having a code, this
      * function returns 0.
      *
-     * @param instance
+     * @param vm
      * @param address
      * @return
      */
-    int getCodeSize(Instance instance, Address address);
+    int getCodeSize(VM vm, Address address);
 
     /**
      * Copy code callback function.
@@ -93,7 +93,7 @@ public interface Context {
      * buffer up to the size of the buffer or the size of the code, whichever is
      * smaller.
      *
-     * @param instance
+     * @param vm
      *            The pointer to the Client execution context.
      * @param address
      *            The address of the account.
@@ -104,7 +104,7 @@ public interface Context {
      *            copy of the requested code.
      * @return The number of bytes copied to the buffer by the Client.
      */
-    int copyCode(Instance instance, Address address, int codeOffset, byte[] buffer);
+    int copyCode(VM vm, Address address, int codeOffset, byte[] buffer);
 
     /**
      * Selfdestruct callback function.
@@ -113,14 +113,14 @@ public interface Context {
      * This callback function is used by an EVM to SELFDESTRUCT given contract. The
      * execution of the contract will not be stopped, that is up to the EVM.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address of the contract to be selfdestructed.
      * @param beneficiary
      *            The address where the remaining ETH is going to be transferred.
      */
-    void selfdestruct(Instance instance, Address address, Address beneficiary);
+    void selfdestruct(VM vm, Address address, Address beneficiary);
 
     /**
      * Log callback function.
@@ -128,8 +128,8 @@ public interface Context {
      * This callback function is used by an EVM to inform about a LOG that happened
      * during an EVM bytecode execution.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param address
      *            The address of the contract that generated the log.
      * @param data
@@ -140,16 +140,16 @@ public interface Context {
      *            The number of the topics. Valid values are between 0 and 4
      *            inclusively.
      */
-    void emitLog(Instance instance, Address address, byte[] data, DataWord topics[], int topics_count);
+    void emitLog(VM vm, Address address, byte[] data, DataWord topics[], int topics_count);
 
     /**
      * Pointer to the callback function supporting EVM calls.
      *
-     * @param instance
-     *            The pointer to the Host execution context.
+     * @param vm
+     *            The execution instance.
      * @param msg
      *            Call parameters. {@link Message}
      * @return The result of the call.
      */
-    Result call(Instance instance, Message msg);
+    Result call(VM vm, Message msg);
 }

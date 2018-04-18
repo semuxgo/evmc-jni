@@ -6,6 +6,8 @@
  */
 package org.semux.evmc.jni.type;
 
+import java.util.Arrays;
+
 public class Message {
 
     /**
@@ -83,6 +85,14 @@ public class Message {
         this.flags = flags;
     }
 
+    public static Message fromBytes() {
+        return null;
+    }
+
+    public byte[] toBytes() {
+        return null;
+    }
+
     public Address getDestination() {
         return destination;
     }
@@ -117,5 +127,20 @@ public class Message {
 
     public int getFlags() {
         return flags;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "destination=" + destination +
+                ", sender=" + sender +
+                ", value=" + value +
+                ", inputData=" + Arrays.toString(inputData) +
+                ", codeHash=" + codeHash +
+                ", gas=" + gas +
+                ", depth=" + depth +
+                ", kind=" + kind +
+                ", flags=" + flags +
+                '}';
     }
 }

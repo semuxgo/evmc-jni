@@ -9,6 +9,7 @@ package org.semux.evmc.jni;
 import org.semux.evmc.jni.type.Message;
 import org.semux.evmc.jni.type.Result;
 import org.semux.evmc.jni.type.Revision;
+import org.semux.evmc.jni.util.Bytes;
 
 public class Evm {
 
@@ -28,16 +29,20 @@ public class Evm {
     }
 
     public void setOption(String name, String value) {
-
+        Native.set_option(pointer, Bytes.of(name), Bytes.of(value));
     }
 
     public Result execute(Context context, Revision revision, Message msg, byte[] code) {
+        byte[] result = Native.execute(pointer, context, revision.code(), msg.toBytes(), code);
+        if (result == null) {
+            throw new EvmException("Failed to execute: " + msg);
+        }
 
-        return null;
+        return Result.fromBytes();
     }
 
     public void destroy() {
-
+        Native.destroy(pointer);
     }
 
     public long getPointer() {

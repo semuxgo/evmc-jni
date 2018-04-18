@@ -6,6 +6,8 @@
  */
 package org.semux.evmc.jni.type;
 
+import java.util.Arrays;
+
 /**
  * The EVM code execution result.
  */
@@ -48,4 +50,51 @@ public class Result {
      * optionally used by the evmc_result object creator.
      */
     byte[] padding;
+
+    public Result(StatusCode statusCode, long gasLeft, byte[] outputData, Address createAddress, byte[] padding) {
+        this.statusCode = statusCode;
+        this.gasLeft = gasLeft;
+        this.outputData = outputData;
+        this.createAddress = createAddress;
+        this.padding = padding;
+    }
+
+    public static Result fromBytes() {
+        return null;
+    }
+
+    public byte[] toBytes() {
+        return null;
+    }
+
+    public StatusCode getStatusCode() {
+        return statusCode;
+    }
+
+    public long getGasLeft() {
+        return gasLeft;
+    }
+
+    public byte[] getOutputData() {
+        return outputData;
+    }
+
+    public Address getCreateAddress() {
+        return createAddress;
+    }
+
+    public byte[] getPadding() {
+        return padding;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "statusCode=" + statusCode +
+                ", gasLeft=" + gasLeft +
+                ", outputData=" + Arrays.toString(outputData) +
+                ", createAddress=" + createAddress +
+                ", padding=" + Arrays.toString(padding) +
+                '}';
+    }
 }

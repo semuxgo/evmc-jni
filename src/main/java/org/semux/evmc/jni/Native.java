@@ -8,9 +8,9 @@ package org.semux.evmc.jni;
 
 public class Native {
 
-    public static native long create_evmjit();
+    public static native byte[] create_evmjit();
 
-    public static native long create_example_evm();
+    public static native byte[] create_example_evm();
 
     public static native void set_option(long vm, byte[] name, byte[] value);
 

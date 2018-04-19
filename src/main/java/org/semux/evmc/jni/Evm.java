@@ -24,19 +24,11 @@ public class Evm {
 
     private String version;
 
-    private static Map<Long, Evm> instances = new ConcurrentHashMap<>();
-
-    public static Evm getInstance(long pointer) {
-        return instances.get(pointer);
-    }
-
     public Evm(long pointer, int abiVersion, String name, String version) {
         this.pointer = pointer;
         this.abiVersion = abiVersion;
         this.name = name;
         this.version = version;
-
-        instances.put(pointer, this);
     }
 
     public void setOption(String name, String value) {
@@ -44,7 +36,7 @@ public class Evm {
     }
 
     public Result execute(Context context, Revision revision, Message msg, byte[] code) {
-        byte[] result = Native.execute(pointer, context, revision.code(), msg.toBytes(), code);
+        byte[] result = Native.execute(context, revision.code(), msg.toBytes(), code);
         if (result == null) {
             throw new EvmException("Failed to execute: " + msg);
         }
@@ -54,8 +46,6 @@ public class Evm {
 
     public void destroy() {
         Native.destroy(pointer);
-
-        instances.remove(pointer);
     }
 
     public long getPointer() {

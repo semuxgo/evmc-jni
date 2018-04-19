@@ -7,6 +7,9 @@
 package org.semux.evmc.jni;
 
 public class EvmException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
     public EvmException() {
     }
 

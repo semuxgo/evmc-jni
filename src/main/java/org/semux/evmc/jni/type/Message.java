@@ -85,7 +85,7 @@ public class Message {
         this.flags = flags;
     }
 
-    public static Message fromBytes() {
+    public static Message fromBytes(byte[] bytes) {
         return null;
     }
 

@@ -6,8 +6,12 @@
  */
 package org.semux.evmc.jni;
 
+import java.util.Arrays;
+
 import org.semux.evmc.jni.type.Address;
 import org.semux.evmc.jni.type.DataWord;
+import org.semux.evmc.jni.type.Message;
+import org.semux.evmc.jni.type.Result;
 
 public class Native {
 
@@ -21,7 +25,9 @@ public class Native {
 
     public static native void destroy(long vm);
 
-    // The following methods are called from JNI
+    /*
+     * The following methods are called from JNI
+     */
 
     public static int account_exists(Context context, byte[] address) {
         return context.accountExists(Address.warp(address)) ? 1 : 0;
@@ -63,20 +69,20 @@ public class Native {
         return 0;
     }
 
-    // TODO:
-    //
-    // 1. void (*evmc_selfdestruct_fn)(struct evmc_context* context,
-    // const struct evmc_address* address,
-    // const struct evmc_address* beneficiary);
-    //
-    // 2. void (*evmc_emit_log_fn)(struct evmc_context* context,
-    // const struct evmc_address* address,
-    // const uint8_t* data,
-    // size_t data_size,
-    // const struct evmc_uint256be topics[],
-    // size_t topics_count);
-    //
-    // 3. void (*evmc_call_fn)(struct evmc_result* result,
-    // struct evmc_context* context,
-    // const struct evmc_message* msg);
+    public static void selfdestruct(Context context, byte[] address, byte[] beneficiary) {
+        context.selfdestruct(Address.warp(address), Address.warp(beneficiary));
+    }
+
+    public static void emit_log(Context context, byte[] address, byte[] data, byte[] topics) {
+        DataWord[] arr = new DataWord[topics.length / DataWord.SIZE];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = DataWord.wrap(Arrays.copyOfRange(topics, i * DataWord.SIZE, (i + 1) * DataWord.SIZE));
+        }
+        context.emitLog(Address.warp(address), data, arr);
+    }
+
+    public static byte[] call(Context context, byte[] msg) {
+        Result result = context.call(Message.fromBytes(msg));
+        return result.toBytes();
+    }
 }

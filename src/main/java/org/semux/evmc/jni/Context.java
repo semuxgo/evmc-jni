@@ -81,11 +81,8 @@ public interface Context {
      *            The pointer to unindexed data attached to the log.
      * @param topics
      *            The pointer to the array of topics attached to the log.
-     * @param topics_count
-     *            The number of the topics. Valid values are between 0 and 4
-     *            inclusively.
      */
-    void emitLog(Address address, byte[] data, DataWord topics[], int topics_count);
+    void emitLog(Address address, byte[] data, DataWord topics[]);
 
     /**
      * Pointer to the callback function supporting EVM calls.

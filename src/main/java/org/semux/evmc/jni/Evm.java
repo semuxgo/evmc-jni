@@ -6,6 +6,9 @@
  */
 package org.semux.evmc.jni;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.semux.evmc.jni.type.Message;
 import org.semux.evmc.jni.type.Result;
 import org.semux.evmc.jni.type.Revision;
@@ -21,11 +24,19 @@ public class Evm {
 
     private String version;
 
+    private static Map<Long, Evm> instances = new ConcurrentHashMap<>();
+
+    public static Evm getInstance(long pointer) {
+        return instances.get(pointer);
+    }
+
     public Evm(long pointer, int abiVersion, String name, String version) {
         this.pointer = pointer;
         this.abiVersion = abiVersion;
         this.name = name;
         this.version = version;
+
+        instances.put(pointer, this);
     }
 
     public void setOption(String name, String value) {
@@ -43,6 +54,8 @@ public class Evm {
 
     public void destroy() {
         Native.destroy(pointer);
+
+        instances.remove(pointer);
     }
 
     public long getPointer() {

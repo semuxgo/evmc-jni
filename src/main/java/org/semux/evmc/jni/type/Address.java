@@ -10,12 +10,16 @@ public class Address {
 
     private byte[] raw;
 
-    public Address(byte[] bytes) {
+    protected Address(byte[] bytes) {
+        this.raw = bytes;
+    }
+
+    public static Address warp(byte[] bytes) {
         if (bytes == null || bytes.length != 20) {
             throw new IllegalArgumentException("Address can't be null or not equal to 20 bytes");
         }
 
-        this.raw = bytes;
+        return new Address(bytes);
     }
 
     public byte[] getRaw() {

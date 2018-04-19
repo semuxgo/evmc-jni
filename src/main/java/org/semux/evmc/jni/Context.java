@@ -22,7 +22,7 @@ public interface Context {
      *            The address of the account the query is about.
      * @return 1 if exists, 0 otherwise.
      */
-    int accountExists(Evm vm, Address address);
+    boolean accountExists(Evm vm, Address address);
 
     /**
      * Get storage callback function.

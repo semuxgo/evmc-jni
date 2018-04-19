@@ -17,22 +17,29 @@ import org.semux.evmc.jni.util.Hex;
  */
 public class DataWord {
 
+    public static final DataWord ZERO = new DataWord(0);
+    public static final DataWord ONE = new DataWord(1);
+
     public static final int SIZE = 32;
 
-    private byte[] raw = new byte[SIZE];
+    private byte[] raw;
+
+    protected DataWord(byte[] bytes) {
+        raw = new byte[SIZE];
+    }
 
     /**
-     * Constructs a data word from byte array. Zeros are padded to the left if
-     * needed.
+     * Wraps a byte array into a Data Word.
      *
      * @param bytes
+     * @return
      */
-    public DataWord(byte[] bytes) {
-        if (bytes == null || bytes.length > SIZE) {
+    public static DataWord wrap(byte[] bytes) {
+        if (bytes == null || bytes.length != SIZE) {
             throw new IllegalArgumentException("Input bytes can't be null or larger than " + SIZE + " bytes");
         }
 
-        System.arraycopy(bytes, 0, raw, SIZE - bytes.length, bytes.length);
+        return new DataWord(bytes);
     }
 
     /**

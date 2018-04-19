@@ -6,9 +6,6 @@
  */
 package org.semux.evmc.jni;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.semux.evmc.jni.type.Message;
 import org.semux.evmc.jni.type.Result;
 import org.semux.evmc.jni.type.Revision;

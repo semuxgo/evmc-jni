@@ -6,6 +6,14 @@
  */
 package org.semux.evmc.jni;
 
-public class NativeTest {
+import java.util.Locale;
 
+public class NativeTest {
+    public static void main(String[] args) {
+        String name = System.getProperty("os.name").toLowerCase(Locale.US);
+        String arch = System.getProperty("os.arch").toLowerCase(Locale.US);
+        String version = System.getProperty("os.version").toLowerCase(Locale.US);
+
+        System.out.println(name + "/" + arch + "/" + version);
+    }
 }

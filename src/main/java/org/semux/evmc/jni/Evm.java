@@ -33,7 +33,7 @@ public class Evm {
     }
 
     public Result execute(Context context, Revision revision, Message msg, byte[] code) {
-        byte[] result = Native.execute(context, revision.code(), msg.toBytes(), code);
+        byte[] result = Native.execute(pointer, context, revision.code(), msg.toBytes(), code);
         if (result == null) {
             throw new EvmException("Failed to execute: " + msg);
         }

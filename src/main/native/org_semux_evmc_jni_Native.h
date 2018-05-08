@@ -26,10 +26,10 @@ JNIEXPORT void JNICALL Java_org_semux_evmc_jni_Native_set_1option
 /*
  * Class:     org_semux_evmc_jni_Native
  * Method:    execute
- * Signature: (Lorg/semux/evmc/jni/Context;I[B[B)[B
+ * Signature: (JLorg/semux/evmc/jni/Context;I[B[B)[B
  */
 JNIEXPORT jbyteArray JNICALL Java_org_semux_evmc_jni_Native_execute
-  (JNIEnv *, jclass, jobject, jint, jbyteArray, jbyteArray);
+  (JNIEnv *, jclass, jlong, jobject, jint, jbyteArray, jbyteArray);
 
 /*
  * Class:     org_semux_evmc_jni_Native

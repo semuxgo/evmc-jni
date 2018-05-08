@@ -84,16 +84,34 @@ JNIEXPORT jbyteArray JNICALL Java_org_semux_evmc_jni_Native_create_1evmjit(
 }
 
 JNIEXPORT void JNICALL Java_org_semux_evmc_jni_Native_set_1option(JNIEnv *env,
-        jclass cls, jlong, jbyteArray, jbyteArray) {
+        jclass cls, jlong p, jbyteArray name, jbyteArray value) {
+    struct evmc_instance *instance = (struct evmc_instance *) p;
+
+    // retrieve data
+    int name_size = env->GetArrayLength(name);
+    int value_size = env->GetArrayLength(value);
+    jbyte *name_buf = (jbyte *) malloc(name_size);
+    jbyte *value_buf = (jbyte *) malloc(value_size);
+    env->GetByteArrayRegion(name, 0, name_size, name_buf);
+    env->GetByteArrayRegion(value, 0, value_size, value_buf);
+
+    // set option
+    instance->set_option(instance, (const char*) name_buf,
+            (const char*) value_buf);
+
+    // release buffer
+    free(name_buf);
+    free(value_buf);
 }
 
 JNIEXPORT jbyteArray JNICALL Java_org_semux_evmc_jni_Native_execute(JNIEnv *env,
-        jclass cls, jobject, jint, jbyteArray, jbyteArray) {
+        jclass cls, jlong p, jobject ctx, jint rev, jbyteArray msg,
+        jbyteArray code) {
     return nullptr;
 }
 
 JNIEXPORT void JNICALL Java_org_semux_evmc_jni_Native_destroy(JNIEnv *env,
-        jclass cls, jlong instance) {
-    struct evmc_instance *p = (struct evmc_instance *) instance;
-    p->destroy(p);
+        jclass cls, jlong p) {
+    struct evmc_instance *instance = (struct evmc_instance *) p;
+    instance->destroy(instance);
 }

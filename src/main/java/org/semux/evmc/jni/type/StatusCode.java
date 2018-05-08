@@ -39,8 +39,8 @@ public enum StatusCode {
     UNDEFINED_INSTRUCTION(5),
 
     /**
-     * The execution has attempted to put more items on the EVM stack
-     * than the specified limit.
+     * The execution has attempted to put more items on the EVM stack than the
+     * specified limit.
      */
     STACK_OVERFLOW(6),
 
@@ -75,8 +75,8 @@ public enum StatusCode {
     PRECOMPILE_FAILURE(12),
 
     /**
-     * Contract validation has failed (e.g. due to EVM 1.5 jump validity,
-     * Casper's purity checker or ewasm contract rules).
+     * Contract validation has failed (e.g. due to EVM 1.5 jump validity, Casper's
+     * purity checker or ewasm contract rules).
      */
     CONTRACT_VALIDATION_FAILURE(13),
 
@@ -86,8 +86,8 @@ public enum StatusCode {
     INTERNAL_ERROR(-1),
 
     /**
-     * The execution of the given code and/or message has been rejected
-     * by the EVM implementation.
+     * The execution of the given code and/or message has been rejected by the EVM
+     * implementation.
      */
     REJECTED(-2);
 

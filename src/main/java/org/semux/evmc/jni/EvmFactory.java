@@ -27,21 +27,6 @@ public class EvmFactory {
         return decodeEvm(vm);
     }
 
-    /**
-     * Creates an Example EVM instance.
-     *
-     * @return
-     */
-    public static Evm createExampleEvm() {
-        byte[] vm = Native.create_example_evm();
-
-        if (vm == null || vm.length == 0) {
-            throw new EvmException("Failed to create Example EVM instance");
-        }
-
-        return decodeEvm(vm);
-    }
-
     protected static Evm decodeEvm(byte[] bytes) {
         ByteBuffer buf = ByteBuffer.wrap(bytes);
 

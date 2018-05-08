@@ -17,14 +17,6 @@ JNIEXPORT jbyteArray JNICALL Java_org_semux_evmc_jni_Native_create_1evmjit
 
 /*
  * Class:     org_semux_evmc_jni_Native
- * Method:    create_example_evm
- * Signature: ()[B
- */
-JNIEXPORT jbyteArray JNICALL Java_org_semux_evmc_jni_Native_create_1example_1evm
-  (JNIEnv *, jclass);
-
-/*
- * Class:     org_semux_evmc_jni_Native
  * Method:    set_option
  * Signature: (J[B[B)V
  */

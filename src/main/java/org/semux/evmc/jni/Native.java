@@ -17,8 +17,6 @@ public class Native {
 
     public static native byte[] create_evmjit();
 
-    public static native byte[] create_example_evm();
-
     public static native void set_option(long vm, byte[] name, byte[] value);
 
     public static native byte[] execute(Context context, int revision, byte[] msg, byte[] code);

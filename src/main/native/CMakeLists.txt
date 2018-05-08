@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(JNI REQUIRED)
 include_directories(${JNI_INCLUDE_DIRS})
 
+# EVMC & EVMJIT
+include_directories(../../evmc/include)
+include_directories(../../evmjit/include)
+
 # source files
 set(SOURCE_FILES org_semux_evmc_jni_Native.cpp)
 

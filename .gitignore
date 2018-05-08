@@ -18,6 +18,9 @@ dist/
 .project
 .classpath
 .settings/
+.cproject
+Debug/
+Release/
 
 # IDEA generated files
 .idea

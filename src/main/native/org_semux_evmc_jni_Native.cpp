@@ -1,6 +1,6 @@
 #include "org_semux_evmc_jni_Native.h"
 
-#include <evmc.h>
+#include <evmc/evmc.h>
 #include <evmjit.h>
 #include <cstdint>
 #include <cstdlib>

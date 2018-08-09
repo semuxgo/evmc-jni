@@ -6,6 +6,9 @@
  */
 package org.semux.evmc.jni.type;
 
+/**
+ * Represents the address of account.
+ */
 public class Address {
 
     private byte[] raw;

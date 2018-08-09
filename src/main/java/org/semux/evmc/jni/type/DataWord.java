@@ -25,7 +25,10 @@ public class DataWord {
     private byte[] raw;
 
     protected DataWord(byte[] bytes) {
+        assert (bytes != null && bytes.length == 20);
+
         raw = new byte[SIZE];
+        System.arraycopy(bytes, 0, raw, SIZE - bytes.length, bytes.length);
     }
 
     /**
@@ -77,13 +80,6 @@ public class DataWord {
      */
     public byte[] getRaw() {
         return raw;
-    }
-
-    /**
-     * Clones this data word.
-     */
-    public DataWord clone() {
-        return new DataWord(raw);
     }
 
     /**

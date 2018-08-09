@@ -6,18 +6,18 @@
  */
 package org.semux.evmc.jni;
 
-public class EvmException extends RuntimeException {
+public class EvmError extends Error {
 
     private static final long serialVersionUID = 1L;
 
-    public EvmException() {
+    public EvmError() {
     }
 
-    public EvmException(String message) {
+    public EvmError(String message) {
         super(message);
     }
 
-    public EvmException(String message, Throwable cause) {
+    public EvmError(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -32,10 +32,10 @@ public class Evm {
         Native.set_option(pointer, Bytes.of(name), Bytes.of(value));
     }
 
-    public Result execute(Context context, Revision revision, Message msg, byte[] code) {
+    public Result execute(StateContext context, Revision revision, Message msg, byte[] code) {
         byte[] result = Native.execute(pointer, context, revision.code(), msg.toBytes(), code);
         if (result == null) {
-            throw new EvmException("Failed to execute: " + msg);
+            throw new EvmError("Failed to execute: " + msg);
         }
 
         return Result.fromBytes();

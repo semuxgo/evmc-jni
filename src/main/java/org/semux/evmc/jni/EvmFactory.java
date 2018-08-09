@@ -21,7 +21,7 @@ public class EvmFactory {
         byte[] vm = Native.create_evmjit();
 
         if (vm == null || vm.length == 0) {
-            throw new EvmException("Failed to create EVMJIT instance");
+            throw new EvmError("Failed to create EVMJIT instance");
         }
 
         return decodeEvm(vm);

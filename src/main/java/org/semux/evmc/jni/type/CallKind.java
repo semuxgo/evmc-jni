@@ -21,7 +21,7 @@ public enum CallKind {
     /**
      * Request CALLCODE.
      */
-    ECALLCODE(2),
+    CALLCODE(2),
 
     /**
      * Request CREATE. Semantic of some params changes.

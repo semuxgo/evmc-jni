@@ -11,7 +11,7 @@ import org.semux.evmc.jni.type.DataWord;
 import org.semux.evmc.jni.type.Message;
 import org.semux.evmc.jni.type.Result;
 
-public interface Context {
+public interface StateContext {
 
     /**
      * Check account existence callback function
@@ -29,7 +29,7 @@ public interface Context {
      *            The address of the contract.
      * @param key
      *            The index of the storage entry.
-     * @return The storage value.
+     * @return The storage value; if not exists, return ZERO.
      */
     DataWord getStorage(Address address, DataWord key);
 
@@ -50,7 +50,7 @@ public interface Context {
      *
      * @param address
      *            The address.
-     * @return The balance value.
+     * @return The balance of the account; return zero if account doesn't exist
      */
     DataWord getBalance(Address address);
 
@@ -77,12 +77,12 @@ public interface Context {
      *
      * @param address
      *            The address of the contract that generated the log.
-     * @param data
-     *            The pointer to unindexed data attached to the log.
      * @param topics
-     *            The pointer to the array of topics attached to the log.
+     *            The topics of the log
+     * @param data
+     *            The unstructured data.
      */
-    void emitLog(Address address, byte[] data, DataWord topics[]);
+    void emitLog(Address address, DataWord[] topics, byte[] data);
 
     /**
      * Pointer to the callback function supporting EVM calls.
